@@ -120,7 +120,7 @@ import { ColorMatch } from "../calc/colors/colorMatch";
 import { getElementSize } from "../dom/elementProperties";
 
 // Import the styling we need.
-import "../../../scss/components/js/colorPicker.scss";
+import "../../scss/components/js/colorPicker.scss";
 
 /**
  * These are the properties that can be set in the `options` objects of the color picker.

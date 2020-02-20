@@ -44,7 +44,7 @@ import { forEach } from "../forEach";
 import throttle from "lodash-es/throttle";
 import { filter } from "../filter";
 import { onReady } from "./onReady";
-import siteSettings from "../../../../site-settings";
+import siteSettings from "../../../site-settings";
 
 let functionQueue = [];
 

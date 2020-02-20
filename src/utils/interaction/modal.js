@@ -59,7 +59,7 @@ import { getFirstInteractiveElementInContainer } from "../dom/accessibility";
 import { isArray } from "../typeCheckers";
 
 // Import the styling we need.
-import "../../../scss/components/js/modal.scss";
+import "../../scss/components/js/modal.scss";
 
 /**
  * An indication of how many modals are currently open. Used internally only.
