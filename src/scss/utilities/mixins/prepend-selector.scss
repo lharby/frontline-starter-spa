@@ -1,0 +1,103 @@
+/// Prepend a selector (like a tag name) to the last part of the selector
+///
+/// @group mixins and tools
+/// @since 3.5.0
+/// @author Lars Munkholm <lars.munkholm@akqa.com>
+/// @param {string} $prepend - The selector to prepend
+/// @param {number} $goBack [0] - How many parents to go back
+///
+/// @example scss
+///   form .input {
+///       @include prepend-selector("input") { height: 50px; }
+///       @include prepend-selector("textarea") { height: 200px; }
+///   }
+///
+///   // This will output:
+///   form input.input { height: 50px; }
+///   form textarea.input { height: 200px; }
+///
+/// @example scss - Use the "goBack" parameter to match a parent's tag name.
+///   .content .ribbon {
+///       @include prepend-selector("article", 1) { background: white; }
+///       @include prepend-selector("section", 1) { background: grey; }
+///   }
+///
+///   // This will output:
+///   article.content .ribbon { background: white; }
+///   section.content .ribbon { background: grey; }
+///
+/// @example scss - Use **strings** to prepend classes or even create something like a modifier using "&".
+///   .box img {
+///       @include prepend-selector(".box--small", 1) { height: 100px; }
+///       @include prepend-selector("&--large", 1) { height: 200px; }
+///   }
+///
+///   // This will output:
+///   .box--small.box img { height: 100px; }
+///   .box--large img { height: 200px; }
+@mixin prepend-selector($prepend, $goBack: 0) {
+    @if str-index($prepend, ":") == 1 {
+        $prepend: "&" + $prepend;
+    }
+
+    @each $selector in & {
+        $result: null;
+        $goBackThis: $goBack;
+
+        // Go back a step further for each sibling combinator
+        @for $i from 1 through length($selector) {
+            $thisSelector: nth($selector, $i);
+
+            @if $thisSelector ==
+                ">" or
+                $thisSelector ==
+                "+" or
+                $thisSelector ==
+                "~"
+            {
+                $goBackThis: $goBackThis + 1;
+            }
+        }
+
+        $target: length($selector) - $goBackThis;
+
+        // We've gone too far!
+        @if $target < 1 {
+            @debug "@mixin prepend-selecor: The $goBack parameter is set to #{$goBack} which is too much for #{$selector}";
+        }
+
+        // Create a new selector
+        @else {
+            @for $i from 1 through length($selector) {
+                @if $i == $target {
+                    $thisSelector: nth($selector, $i);
+                    $prependOffset: str-index($thisSelector, ":") or
+                        str-length($thisSelector) +
+                        1;
+                    $prependSelector: str-replace(
+                            $prepend,
+                            "&",
+                            str-slice($thisSelector, 1, $prependOffset - 1)
+                        ) +
+                        str-slice($thisSelector, $prependOffset);
+
+                    @if $prependSelector == $prepend {
+                        $result: append(
+                            $result,
+                            $prependSelector + $thisSelector
+                        );
+                    } @else {
+                        $result: append($result, $prependSelector);
+                    }
+                } @else {
+                    $result: append($result, nth($selector, $i));
+                }
+            }
+
+            // Insert content under the new selector
+            @at-root #{$result} {
+                @content;
+            }
+        }
+    }
+}

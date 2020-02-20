@@ -1,0 +1,57 @@
+﻿//
+// Variables
+//
+// Set all your variables in this file. Please adhere
+// to the BEM-syntax here as well, as this makes your
+// variables much easier to read.
+// --------------------------------------------------
+
+// Global size for calculating em
+$font-size__root: 16px;
+
+//
+// Colors
+// --------------------------------------------------
+
+// Tired of naming colors? use: http://chir.ag/projects/name-that-color/
+// This color convention solves potential issues when multiple properties use the same color.
+// Instead of this:
+//
+//  $border-color: #000000;
+//  body{
+//    background-color: $border-color
+//  }
+//
+// Do this:
+//
+//  $palette__red: #ff0000;
+//
+//  $color__text: $palette__red;
+//  $color__background: $palette__red;
+//  $color__background--alternate: $palette__gray;
+// --------------------------------------------------
+
+$palette__gray: #666;
+$palette__gray--light: #999;
+$palette__gray--dark: #333;
+
+$palette__red: #f40000;
+$palette__red--light: #ff6565;
+$palette__red--dark: #7e0303;
+
+$color__text: $palette__gray;
+$color__border: $palette__red;
+$color__input-placeholder: $palette__gray--dark;
+
+//
+// Grid settings
+// --------------------------------------------------
+$grid__enabled: true; // If you set this to false, the grid will NOT be included at all. This is a more future-proof way of disabling it.
+$grid__use-em: true; // Set this to true to deliver all grid sizes in "em"; set to false to use pixel sizes instead.
+$grid__columns: 12; // should be 12, 24 for general usage
+$grid__padding-size: 20px; // used for the container and column padding
+$grid__padding-sidesonly: false; // container
+$grid__disable-padding: false; // container
+$grid__container-offset: 40px; // container offset to be subtracted from max-width
+//$grid__breakpoints: (xxs, sm); // Use this to define the specific breakpoints you actually use in your grid. This will keep your CSS smaller.
+//$grid__column-widths: (3, 6, 12); // Use this to define the column widths you actually use. This will keep your CSS smaller.

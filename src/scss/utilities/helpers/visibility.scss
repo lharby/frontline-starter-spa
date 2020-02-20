@@ -1,0 +1,13 @@
+/// Hide an element using this class.
+/// @group helpers
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/// Apply the `visuallyhidden` mixin on an element.
+/// @group helpers
+/// @see {mixin} visuallyhidden
+.visuallyhidden {
+    @include visuallyhidden;
+}

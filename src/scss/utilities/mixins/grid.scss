@@ -1,0 +1,126 @@
+@import "../placeholders";
+
+/// Calculates width of element if it needs to fill the whole column __and__ stretch to the edge of screen.
+/// Can also stretch 'through' columns, that stand between our element and its one true love: the edge of the screen.
+///
+/// Needs to be a direct child of a column from our grid.
+///
+/// Needs 'overflow-x: hidden' on a full window width parent element (or even body or html)
+/// otherwise horizontal scrollbar appears, due to the nature of VW that includes scrollbar width in its calculation on Windows OS.
+///
+/// This only calculates width. Layout (ie. absolute, float..) needs to be added accordingly.
+///
+/// @since 3.6.5
+/// @group mixins and tools
+/// @author Leo Karsbæk <leo.karsbaek@akqa.com>
+///
+/// @param {number} $columnWidth - the width of the column which the element is child of ie. col--sm-8
+/// @param {number} $columnOffset [0] - the width of the columns which are between our target col, and edge of row.
+/// @example html - How markup might look like:
+///   <div class="grid grid-container">
+///       <div class="row">
+///           <div class="col col--sm-4 col--stretch">
+///               <div class="bg-imagehandler stretch-armstrong">...</div>
+///           </div>
+///           <div class="col col--sm-2">
+///               ...
+///           </div>
+///           <div class="col col--sm-1 col--stretch">
+///               <div class="funky-gradient stretch-a-lot">...</div>
+///           </div>
+///           <div class="col col--sm-5">
+///               ...
+///           </div>
+///       </div>
+///   </div>
+/// @example scss - Stretch our targets
+///   .col--stretch {
+///       position: relative;
+///   }
+///
+///   .stretch-armstrong {
+///       @include stretchColumn(4);
+///       @include position(absolute, 0 0 0 auto);
+///   }
+///
+///   .stretch-a-lot {
+///       @include stretchColumn(1,5);
+///       @include position(absolute, 0 auto 0 0);
+///   }
+@mixin stretchColumn($columnWidth, $columnOffset: 0) {
+    // All percentageWidths are relative to the column width of the column which our element is child of
+    $percentageWidthOfOneColumn: 100% / $columnWidth;
+    $numberOfRemainingColumns: $grid__columns - $columnWidth;
+    $percentageWidthOfRemainingColumns: $percentageWidthOfOneColumn *
+        $numberOfRemainingColumns;
+    $percentageWidthOfOffsetColumns: $percentageWidthOfOneColumn * $columnOffset;
+    $percentageWidthOfRow: $percentageWidthOfOneColumn * $grid__columns;
+
+    // 100vw - widthOfRemainingColumns + widthOfOffsetColumns - distanceFromRowEdgeToScreenEdge = distanceFromRowEdgeToScreenEdge + widthOfColumn
+    width: calc(
+        (100vw - #{$percentageWidthOfRemainingColumns}) + #{$percentageWidthOfOffsetColumns} -
+            ((100vw - #{$percentageWidthOfRow}) / 2)
+    );
+}
+
+/// Mixin for building a column definition for a given breakpoint. You should only use this in circumstances where
+/// you want to build "weird" column definitions that fall outside the regular grid and pre-defined breakpoints.
+///
+/// @group mixins and tools
+/// @author Christian Broström <christian.brostrom@akqa.com>
+/// @author Elise Bach <elise.bach@akqa.com>
+/// @author Anders Gissel <anders.gissel@akqa.com>
+/// @author Dennis Haulund Nielsen <dennis.nielsen@akqa.com>
+///
+/// @example scss - Build custom grid definitions
+///   @include buildColumn(derp, 6);
+///   @include buildColumn(derp, 9);
+///   @include buildColumn(derp, 12);
+///   // This will result in these classes being built:
+///   // .col--derp-6, .col--derp-9, .col--derp-12
+///   // .col--offset-derp-6, .col--offset-derp-9, .col--offset-derp-12
+///
+/// @example html - How to use the regular grid:
+///   <div class="grid grid-container">
+///       <div class="row">
+///           <div class="col col--xxs-6 col--xs-4 col--sm-2 col--md-1">
+///               This is a regular "cell".
+///           </div>
+///           <div class="col col--xxs-6 col--xs-4 col--offset-sm-3 col--sm-9">
+///               This is a "cell" with offset added on the "sm"-breakpoint.
+///           </div>
+///       </div>
+///   </div>
+@mixin buildColumn($breakpointName, $columnWidth) {
+    .col {
+        @extend %baseColumn;
+
+        // Only render the "--no-pad" flavor if padding is not disabled completely.
+        @if (not $grid__disable-padding) {
+            &--no-pad {
+                @extend %baseColumnNoPad;
+            }
+        }
+    }
+
+    // Generates classes like col--md-5, col--sm-3, col--lg-7, etc. (".col--breakpointName-columnWidth").
+    .col--#{$breakpointName}-#{$columnWidth} {
+        @include mq($breakpointName) {
+            // Calculate width as a percentage of the whole.
+            $percentage: percentage($columnWidth / $grid__columns);
+            flex: 0 0 $percentage;
+            max-width: $percentage; // Fix for IE
+        }
+    }
+
+    // Create horizontal offset classes.
+    // Generates classes like col--offset-md-x, col--offset-sm-x, col--offset-lg-x (where x is a an integer).
+    .col--offset-#{$breakpointName}-#{$columnWidth} {
+        @extend %baseColumnOffset;
+
+        @include mq($breakpointName) {
+            // Calculates percentage based on $key-value and number of columns times 100.
+            margin-left: percentage($columnWidth / $grid__columns);
+        }
+    }
+}

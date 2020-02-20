@@ -1,0 +1,43 @@
+/// Strip the unit from the given number
+///
+/// @group mixins and tools
+/// @returns {number} - The number without the unit.
+@function strip-unit($number) {
+    @if type-of($number) == "number" and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+
+    @return $number;
+}
+
+/// Convert a pixel-size to em, based on an optional context.
+///
+/// @group mixins and tools
+/// @returns {string} The converted unit
+///
+/// @example font-size: em(16px);
+/// @example width: em(240px, 18px);
+@function em($pixels, $context: $font-size__root) {
+    $pixels: strip-unit($pixels);
+    $context: strip-unit($context);
+    $ratio: $pixels / $context;
+    @if ($context == $font-size__root) {
+        @return $ratio * 1rem;
+    } @else {
+        @return $ratio * 1em;
+    }
+}
+
+/// Convert the incomint pixel-size to em, but only if the page's grid is set
+/// to utilize em's. Otherwise, the input will be returned unchanged.
+///
+/// @group mixins and tools
+/// @returns {string} The (possibly) converted number
+/// @see em
+@function conditional-em($pixels, $context: $font-size__root) {
+    @if ($grid__use-em) {
+        @return em($pixels, $context);
+    } @else {
+        @return $pixels;
+    }
+}

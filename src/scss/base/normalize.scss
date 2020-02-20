@@ -1,0 +1,8 @@
+﻿// Various variables and similar are available in the Normalize.scss library.
+// Inspect the following file to learn more!
+@import "~normalize-scss/sass/normalize";
+
+@include normalize();
+
+// If you want to disable certain aspects of Normalize, you can remove them from the list of includes instead:
+//@include normalize((document,sections,grouping,links,text,embedded,forms,interactive,scripting,hidden));

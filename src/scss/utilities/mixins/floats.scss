@@ -1,0 +1,22 @@
+/// Apply clearfix to an element.
+/// @group mixins and tools
+/// @example
+///   .parent {
+///       @include clearfix;
+///
+///       .child {
+///           float: right;
+///           height: 300px;
+///       }
+///   }
+@mixin clearfix {
+    &::before,
+    &::after {
+        content: " ";
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}

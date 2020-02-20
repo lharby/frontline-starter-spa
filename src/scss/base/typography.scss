@@ -1,0 +1,13 @@
+//
+// FONTS AND TYPOGRAPHY
+// This is where you set up your various fonts.
+// --------------------------------------------------
+
+html {
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}

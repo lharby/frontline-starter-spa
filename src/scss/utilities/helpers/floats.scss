@@ -1,0 +1,7 @@
+/// Clear floats with the clear fix.
+/// @group helpers
+/// @see {mixin} clearfix
+.clearfix {
+    *zoom: 1;
+    @include clearfix;
+}

@@ -1,0 +1,33 @@
+// WebKit-style focus
+@mixin tab-focus {
+    // Default
+    outline: thin dotted #333;
+
+    // WebKit
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+// Placeholder text
+@mixin placeholder($color: $color__input-placeholder) {
+    // Firefox 19+
+    &::-moz-placeholder {
+        color: $color;
+
+        @content;
+    }
+
+    // Safari and Chrome
+    &::-webkit-input-placeholder {
+        color: $color;
+
+        @content;
+    }
+
+    // Internet Explorer 10+
+    &:-ms-input-placeholder {
+        color: $color;
+
+        @content;
+    }
+}

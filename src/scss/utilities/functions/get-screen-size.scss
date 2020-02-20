@@ -1,0 +1,15 @@
+/// Get a screen size from its name.
+///
+/// @group mixins and tools
+/// @returns {string} - Screen size if it exists, otherwise **false**
+///
+/// @example min-width: get-screen-size(md);
+/// @example @media (max-width: get-screen-size(md) - 1px) { ... }
+@function get-screen-size($screenSizeName) {
+    @if map-has-key($screensizes, $screenSizeName) {
+        @return map-get($screensizes, $screenSizeName);
+    } @else {
+        @warn "No value found for `#{$screenSizeName}`. Please make sure it is defined in the `$screensizes` map.";
+        @return false;
+    }
+}

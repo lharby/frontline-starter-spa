@@ -1,0 +1,21 @@
+@import "../screensizes";
+
+/// Get a breakpoint's size from its name.
+///
+/// @group mixins and tools
+/// @access private
+/// @returns {string|boolean} - Breakpoint size if it exists, otherwise **false**
+@function get-breakpoint($breakpoint, $measurement: width) {
+    $breakpoints: $widthBreakpoints;
+
+    @if $measurement == height {
+        $breakpoints: $heightBreakpoints;
+    }
+
+    @if map-has-key($breakpoints, $breakpoint) {
+        @return inspect(map-get($breakpoints, $breakpoint));
+    } @else {
+        @warn "No value found for `#{$breakpoint}`. Please make sure it is defined in the `$#{$measurement}Breakpoints` map.";
+        @return false;
+    }
+}

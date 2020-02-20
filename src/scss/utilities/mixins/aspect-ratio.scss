@@ -1,0 +1,7 @@
+/// Set aspect ratio as `padding-top`
+/// @param {umber} $x - width
+/// @param {umber} $y - height
+/// @example @include ratio(16, 9);
+@mixin ratio($x, $y) {
+    padding-top: percentage($y / $x);
+}

@@ -1,0 +1,20 @@
+/// Clean a button of its default browser styling.
+/// @group mixins and tools
+/// @example
+///   button {
+///       @include clean-button;
+///       color: blue;
+///       text-decoration: underline;
+///   }
+@mixin clean-button {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    vertical-align: bottom;
+}

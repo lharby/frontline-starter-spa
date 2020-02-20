@@ -1,0 +1,38 @@
+/// Extend this to clean a button of its default browser styling.
+///
+/// It can be beneficial to _extend a placeholder_ rather than using a mixin,
+/// since you avoid having the same styling repeated multiple times in your CSS.
+/// @group placeholders
+%cleanButton {
+    @include clean-button;
+}
+
+/// Setup shared by all columns
+/// @group utilities
+/// @access private
+%baseColumn {
+    flex: 0 0 100%;
+    max-width: 100%; // Because IE
+
+    // global disable padding
+    @if ($grid__disable-padding) {
+        padding: 0;
+    } @else if ($grid__padding-sidesonly) {
+        padding: 0 conditional-em($grid__padding-size);
+    } @else {
+        padding: conditional-em($grid__padding-size);
+    }
+}
+
+/// Specific settings for "--no-pad" helpers
+/// @group placeholders
+/// @access private
+%baseColumnNoPad {
+    padding: 0;
+}
+
+/// @group placeholders
+/// @access private
+%baseColumnOffset {
+    margin-left: 0;
+}

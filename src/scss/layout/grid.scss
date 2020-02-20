@@ -1,0 +1,109 @@
+////
+/// @group grid
+/// @author Elise Bach <elise.bach@akqa.com>
+/// @author Christian Broström <christian.brostrom@akqa.com>
+/// @author Anders Gissel <anders.gissel@akqa.com>
+////
+
+@if ($grid__enabled) {
+    /// The overall structure of the grid is created here. This is considered *read-only*.
+    ///
+    /// You can set up the grid for your needs (or disable it) by changing the variables in `scss/base/variables.scss`.
+    ///
+    /// Usage: `<div class="grid grid-container"></div>`
+    .grid {
+        display: flex;
+        flex-flow: column;
+
+        .row {
+            align-items: flex-start;
+            display: flex;
+            flex-flow: row
+                wrap; // Makes sure the grid is aligned to the left and top
+            justify-content: flex-start;
+
+            // Makes sure the grid is centered horizontally
+            &--center {
+                justify-content: center;
+            }
+
+            // Makes sure the grid is aligned to the right
+            &--right {
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    /// This is the grid container.
+    ///
+    /// `max-width` is set from the medium breakpoint and up, and values are taken from the `site-settings.json` file.
+    ///
+    /// This section should be changed to fit your specific needs.
+    ///
+    /// **ONLY change the 'md' part to fit.** (xxs, xs, sm, md, lg etc).
+    .grid-container {
+        margin: 0 auto;
+        padding: 0 conditional-em($grid__padding-size);
+        width: 100%;
+
+        @include mq(md) {
+            max-width: conditional-em(
+                (map-get($screensizes, md) - $grid__container-offset)
+            );
+            padding: 0;
+        }
+
+        @include mq(lg) {
+            max-width: conditional-em(
+                (map-get($screensizes, lg) - $grid__container-offset)
+            );
+        }
+
+        @include mq(xl) {
+            max-width: conditional-em(
+                (map-get($screensizes, xl) - $grid__container-offset)
+            );
+        }
+
+        @include mq(xxl) {
+            max-width: conditional-em(
+                (map-get($screensizes, xxl) - $grid__container-offset)
+            );
+        }
+    }
+
+    // Find out which breakpoints we should be rendering for our grid. All of them, or just a subset?
+    $breakpointTargets: ();
+    @if (
+        variable_exists(grid__breakpoints) and length($grid__breakpoints) > 0
+    ) {
+        $breakpointTargets: $grid__breakpoints;
+    } @else {
+        $breakpointTargets: $screensizes;
+    }
+
+    // Render all the grid columns, their offset helpers, and similar goodies.
+    @each $breakpointName, $value in $breakpointTargets {
+        // If $grid__column-widths exists and has items, use only those column widths specifically.
+        @if (
+            variable_exists(grid__column-widths) and
+                length($grid__column-widths) >
+                0
+        ) {
+            @each $columnIndex in $grid__column-widths {
+                @include buildColumn($breakpointName, $columnIndex);
+            }
+        }
+
+        // If $grid__column-widths does not exist, or has no values, just render ALL the widths.
+        @else {
+            @for $i from 1 through $grid__columns {
+                @include buildColumn($breakpointName, $i);
+            }
+        }
+    }
+
+    /* The grid can be extended with alignment classes etc -
+        but for now it is considered a barebone, easy implementation for quick use.
+    */
+}

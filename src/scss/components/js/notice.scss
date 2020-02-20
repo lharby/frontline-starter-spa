@@ -1,0 +1,178 @@
+// This file contains the necessary styling to get the notice utility up and running.
+//
+// Remember these three if you want to use the mq() mixin, or... well, any other kind of mixin, really. Since
+// this styling file "lives inside" the JS-compiler, you need to include the specific stuff you need instead
+// of relying on the automatic framework provided by our usual styling pipeline.
+//
+// @import "base/variables";
+// @import "utilities/screensizes";
+// @import "utilities/mixins";
+
+$notice__background: #eee;
+$notice__text-color: #000;
+
+$notice__gutter: 1em;
+$notice__padding: 1.5em;
+
+$notice__icon-height: 3em;
+$notice__icon-width: 3em;
+
+$notice__progress-bar-height: 0.5em;
+$notice__progress-bar-background: #ccc;
+$notice__progress-bar-color: #fa0;
+$notice__progress-bar-color--critical: #f00;
+
+.notice {
+    $noticeRoot: &;
+
+    position: fixed;
+    z-index: 500;
+    top: 0;
+    right: 0;
+    height: 0;
+    pointer-events: none;
+
+    &:active,
+    &:hover {
+        #{$noticeRoot}__progress-bar {
+            animation-play-state: paused;
+        }
+    }
+
+    &__item {
+        // Please leave this as it is, or be very careful when changing it.
+        // If you choose to change anything, be sure to test it thoroughly with both single and multiple notices.
+        position: relative;
+        z-index: 5;
+        margin: 0 $notice__gutter 0;
+        user-select: none;
+        transition: opacity 0.7s cubic-bezier(0.32, 2, 0.52, 1.3),
+            max-height 0.5s ease-out 0.15s;
+        animation-timing-function: cubic-bezier(0.32, 2, 0.52, 1.3);
+        animation-play-state: running;
+        animation-duration: 0.75s;
+        animation-iteration-count: 1;
+        animation-name: notice-appear;
+        pointer-events: auto;
+        backface-visibility: hidden;
+        -webkit-tap-highlight-color: transparent;
+
+        // This pseudo element is used as a gutter.
+        // We can't use padding-top, since we're transitioning max-height to zero and padding will screw it up.
+        &::before {
+            content: "";
+            display: block;
+            height: $notice__gutter;
+        }
+
+        &--hide {
+            opacity: 0;
+            max-height: 0 !important;
+            cursor: default;
+        }
+    }
+
+    &__inside {
+        position: relative;
+        width: 300px;
+        max-width: 100vw;
+        cursor: pointer;
+
+        &--has-progress-bar {
+            padding-bottom: $notice__progress-bar-height;
+
+            // This is the progress bar "background"
+            &::after {
+                content: "";
+                position: absolute;
+                z-index: 1;
+                bottom: 0;
+                left: 0;
+                height: $notice__progress-bar-height;
+                width: 100%;
+                margin-left: 0;
+                background-color: $notice__progress-bar-background;
+            }
+        }
+    }
+
+    &__progress-bar {
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: $notice__progress-bar-height;
+        animation-timing-function: linear;
+        animation-play-state: running;
+        animation-duration: 10s;
+        animation-fill-mode: forwards;
+        animation-name: notice-progress;
+    }
+
+    &__content {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        background: $notice__background;
+    }
+
+    &__icon {
+        flex: 0 0 #{$notice__icon-width + $notice__padding};
+        max-width: $notice__icon-width + $notice__padding;
+        height: $notice__icon-height + ($notice__padding * 2);
+        padding: $notice__padding 0 $notice__padding $notice__padding;
+
+        img,
+        svg {
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+            fill: currentColor;
+        }
+    }
+
+    &__message {
+        flex: 1 1 100%;
+        max-width: calc(100% - #{$notice__icon-width + $notice__padding});
+        padding: $notice__padding;
+        color: $notice__text-color;
+        overflow: hidden;
+
+        &:first-child {
+            max-width: 100%;
+        }
+    }
+}
+
+@keyframes notice-appear {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -1rem, 0);
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes notice-progress {
+    0% {
+        width: 0;
+        background-color: $notice__progress-bar-color;
+    }
+
+    60% {
+        background-color: $notice__progress-bar-color;
+    }
+
+    100% {
+        width: 100%;
+        background-color: $notice__progress-bar-color--critical;
+    }
+}

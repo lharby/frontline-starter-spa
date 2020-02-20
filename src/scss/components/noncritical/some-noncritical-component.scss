@@ -1,0 +1,3 @@
+// A non-critical component should be part of stylesheet(s) that are lazy-loaded once the browser has the time for it.
+// Non-critical components can easily take up more space and be more verbose than the critical ones, since they are
+// lazy-loaded anyway.
