@@ -17,7 +17,7 @@ const {
 const { FrontlineWebpackConfig } = require("@akqa-frontline/webpack-config");
 
 const entry = {
-    "main.js": "./src/js/main.js",
+    "main.js": "./src/main.js",
     "critical.css": "./src/scss/critical.scss",
     "styles.css": "./src/scss/main.scss"
 }
