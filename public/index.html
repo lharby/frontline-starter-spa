@@ -8,6 +8,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+    <p>
+        The env variables in your <code>.env</code> file can be used directly in your HTML.<br/>
+        This is great for things such as Google Analytics!<br/>
+    </p>
+    <ul>
+        <li><code>FRONTLINE_GOOGLE_ANALYTICS_ID:</code> <code>%FRONTLINE_GOOGLE_ANALYTICS_ID%</code></li>
+        <li><code>FRONTLINE_API_KEY:</code> <code>%FRONTLINE_API_KEY%</code></li>
+        <li><code>FRONTLINE_FEATURE_TOGGLE:</code> <code>%FRONTLINE_FEATURE_TOGGLE%</code></li>
+    </ul>
+    <p>
+        To define and use your own env variables, follow these steps:
+    </p>
+    <ul>
+        <li>Create a <code>.env</code> file in the root of your project</li>
+        <li>
+            Write your env variables, they <strong><em>must</em></strong> be prefixed with <code>FRONTLINE</code> - example:<br/>
+            <code>FRONTLINE_API_KEY=apisftw</code>
+        </li>
+        <li>Access it: <code>process.env.FRONTLINE_API_KEY</code></li>
+    </ul>
+    <p>
+        There are also two built-in env variables, the <code>NODE_ENV</code> and the <code>PUBLIC_URL</code><br/>
+        Use <code>NODE_ENV</code> to help determine if you are running production code or not.<br/>
+        Use <code>PUBLIC_URL</code> as a prefix for assets hosted in the public folder, always.
+    </p>
+    <ul>
+        <li><code>NODE_ENV</code> <code>%NODE_ENV%</code></li>
+        <li><code>PUBLIC_URL</code> <code>%PUBLIC_URL%</code></li>
+    </ul>
+    <p>Asset example html:</p>
+    <p><code>&lt;img src="&#37;PUBLIC_URL&#37;/images/dog.webp" /&gt;</code></p>
+    <p>
+        And of course in your JavaScript code as shown in this React Application:<br/>
+    </p>
     <div data-react-element="App"></div>
 </body>
 </html>
