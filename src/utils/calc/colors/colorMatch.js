@@ -81,7 +81,7 @@ function parseColorToLab(color) {
         return rgbToLab(rgba);
     }
 
-    throw "Unrecognized color type.";
+    throw new Error("Unrecognized color type.");
 }
 
 export class ColorMatch {

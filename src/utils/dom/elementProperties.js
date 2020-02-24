@@ -86,7 +86,7 @@ export function isElementInViewport(element, expandMargin = 0) {
         spanY >= Math.min(0, expandMarginY) + 1 &&
         rect.top <= currentWindowHeight + expandMarginY - 1 &&
         spanX >= Math.min(0, expandMarginX) + 1 &&
-            rect.left <= currentWindowWidth + expandMarginX - 1
+        rect.left <= currentWindowWidth + expandMarginX - 1
     );
 }
 
@@ -125,7 +125,7 @@ export function getElementPosition(element, relativeTo = window) {
 
     // Throw error if element wasn't found
     if (!useElement) {
-        throw "getElementPosition did not find an element.";
+        throw new Error("getElementPosition did not find an element.");
     }
 
     const useRelativeTo =
@@ -135,7 +135,9 @@ export function getElementPosition(element, relativeTo = window) {
 
     // Throw error if relative element wasn't found
     if (!useRelativeTo) {
-        throw "getElementPosition did not find an element to show the position relative to.";
+        throw new Error(
+            "getElementPosition did not find an element to show the position relative to."
+        );
     }
 
     const rect = useElement.getBoundingClientRect();

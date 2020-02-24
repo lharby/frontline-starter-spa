@@ -119,7 +119,7 @@ export function multiplyMatrices(...matrices) {
                 previousMatrix = matrix;
             }
         } else {
-            throw "Invalid matrix";
+            throw new Error("Invalid matrix");
         }
     }
 

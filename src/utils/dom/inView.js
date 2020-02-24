@@ -120,7 +120,7 @@ export function setupInView(elements, inViewClass, inViewType, inViewMargin) {
     } else if (typeof elements === "object" && elements.length) {
         inViewElements = elements;
     } else {
-        throw "inView elements not given as string or nodeList";
+        throw new Error("inView elements not given as string or nodeList");
     }
 
     for (let i = 0, len = inViewElements.length; i < len; i += 1) {
