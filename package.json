@@ -63,7 +63,10 @@
   "lint-staged": {
     "src/**/*.*(js|jsx|json|css|scss)": [
       "prettier --write",
-      "eslint src/**/*.*(js|jsx|json) --fix",
+      "eslint src/**/*.*(js|jsx|json) --fix"
+    ],
+    "src/**/*.*(css|scss)": [
+      "prettier --write",
       "stylelint src/**/*.*(css|scss) --fix"
     ]
   }
