@@ -121,9 +121,9 @@
  * });
  */
 
-import { onScroll, removeScrollCallback } from "../events/onScroll";
+import { onScroll, removeScrollCallback } from "./onScroll";
 import { getElementScroll, getElementSize } from "../dom/elementProperties";
-import { currentWindowHeight } from "../events/onWindowResize";
+import { currentWindowHeight } from "./onWindowResize";
 import { forEach } from "../forEach";
 import { isElement } from "../typeCheckers";
 import { getPart } from "../calc/percentage";

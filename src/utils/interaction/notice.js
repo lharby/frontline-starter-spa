@@ -46,7 +46,7 @@
  *
  */
 
-import { Timer } from "../../utils/timer";
+import { Timer } from "../timer";
 import {
     appendElement,
     deleteElement,
@@ -56,8 +56,8 @@ import {
     addEvent,
     removeEvent,
     removeAllEvents
-} from "../../utils/events/events";
-import { addClass } from "../../utils/dom/classList";
+} from "../events/events";
+import { addClass } from "../dom/classList";
 import { setStyles } from "../dom/setStyles";
 import { Gesture } from "../events/gesture";
 import { splitter } from "../splitter";

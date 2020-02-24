@@ -55,12 +55,12 @@
 
 import throttle from "lodash-es/throttle";
 import { forEach } from "../forEach";
-import { addClass, removeClass } from "../../utils/dom/classList";
+import { addClass, removeClass } from "../dom/classList";
 import {
     addEvent,
     delegateEvent,
     removeAllEvents
-} from "../../utils/events/events";
+} from "../events/events";
 import { createElement } from "../dom/createElement";
 import {
     deleteElement,

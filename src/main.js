@@ -2,7 +2,9 @@
 // the same rules and guidelines apply for this bootstrapper as they do for the bootstrapper and asyncBootstrapper (split your code responsibly).
 // The reactBootstrapper supports both static and dynamic imports - which is why there is no asyncReactBootstrapper
 import { reactBootstrapper } from "./utils/react/reactBootstrapper";
+
 import App from "./App";
+
 reactBootstrapper({
     App
 });

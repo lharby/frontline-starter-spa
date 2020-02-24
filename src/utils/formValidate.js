@@ -85,15 +85,15 @@
  *
  */
 
-import { onReady } from "../utils/events/onReady";
-import { addEvent, removeEvent } from "../utils/events/events";
-import { addClass, hasClass, removeClass } from "../utils/dom/classList";
-import { forEach } from "../utils/forEach";
-import { scrollTo } from "../utils/dom/scrollTo";
-import { createElement } from "../utils/dom/createElement";
-import { emailRegex } from "../utils/patternMatching/email";
-import { passwordRegex } from "../utils/patternMatching/password";
-import { setInputPattern } from "../utils/dom/setInputPattern";
+import { onReady } from "./events/onReady";
+import { addEvent, removeEvent } from "./events/events";
+import { addClass, hasClass, removeClass } from "./dom/classList";
+import { forEach } from "./forEach";
+import { scrollTo } from "./dom/scrollTo";
+import { createElement } from "./dom/createElement";
+import { emailRegex } from "./patternMatching/email";
+import { passwordRegex } from "./patternMatching/password";
+import { setInputPattern } from "./dom/setInputPattern";
 
 /**
  * Callback for when the valid form is submitted.
