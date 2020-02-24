@@ -323,7 +323,9 @@ export function bootstrapper(target, ConstructorReference) {
     } else if (typeof target === "object") {
         spawnInstancesFromObject(target);
     } else {
-        throw "First argument to bootstrapper must be a string or an object!";
+        throw new Error(
+            "First argument to bootstrapper must be a string or an object!"
+        );
     }
 }
 
@@ -361,6 +363,8 @@ export function asyncBootstrapper(target, moduleResolverPromise) {
     } else if (typeof target === "object") {
         spawnInstancesFromObject(target, true);
     } else {
-        throw "First argument to asyncBootstrapper must be a string or an object!";
+        throw new Error(
+            "First argument to asyncBootstrapper must be a string or an object!"
+        );
     }
 }

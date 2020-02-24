@@ -67,7 +67,7 @@ export function isDateValid(date, isMonthFirst = false) {
                 dateArray[0].substr(4)
             ];
         } else if (dateArray.length !== 3) {
-            throw "Invalid date format";
+            throw new Error("Invalid date format");
         }
     }
 

@@ -255,7 +255,9 @@ export function setupLazyImages(lazyImages, bufferMarginPx) {
     } else if (typeof lazyImages === "object" && lazyImages.length) {
         imageContainers = lazyImages;
     } else {
-        throw "lazyLoader imageContainers not given as string or nodeList";
+        throw new Error(
+            "lazyLoader imageContainers not given as string or nodeList"
+        );
     }
 
     lazyBufferMarginPx = bufferMarginPx;

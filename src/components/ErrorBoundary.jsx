@@ -1,23 +1,22 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const isDevelop = process.env.NODE_ENV === "development";
 
 class ErrorBoundary extends Component {
-
     static propTypes = {
         clearErrorOnNavigate: PropTypes.bool
-    }
+    };
 
     static defaultProps = {
         clearErrorOnNavigate: false
-    }
+    };
 
     state = {
         error: null,
         errorInfo: null
-    }
+    };
 
     componentDidMount() {
         const { history } = this.props;
@@ -25,7 +24,7 @@ class ErrorBoundary extends Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        this.setState({error, errorInfo});
+        this.setState({ error, errorInfo });
 
         // You can also log the error to an error reporting service
         console.warn(error, errorInfo);
@@ -33,27 +32,29 @@ class ErrorBoundary extends Component {
 
     onHistoryChange = () => {
         if (this.state.error && this.props.clearErrorOnNavigate) {
-            this.setState({error: null, errorInfo: null});
+            this.setState({ error: null, errorInfo: null });
         }
-    }
+    };
 
     render() {
-        const {error, errorInfo} = this.state;
+        const { error, errorInfo } = this.state;
         // You can render any custom fallback UI
         if (error) {
             if (isDevelop) {
                 return (
-<details style={{padding: '.5rem'}}>
-<summary style={{color: 'red', marginBottom: '.5rem'}}>Something went wrong.</summary>
-{error.toString()}
-<br/>
-<pre>
-{errorInfo.componentStack}
-</pre>
-</details>
-                )
+                    <details style={{ padding: ".5rem" }}>
+                        <summary
+                            style={{ color: "red", marginBottom: ".5rem" }}
+                        >
+                            Something went wrong.
+                        </summary>
+                        {error.toString()}
+                        <br />
+                        <pre>{errorInfo.componentStack}</pre>
+                    </details>
+                );
             } else {
-                return <h3 style={{color: 'red'}}>Something went wrong.</h3>;
+                return <h3 style={{ color: "red" }}>Something went wrong.</h3>;
             }
         }
 

@@ -203,7 +203,9 @@ export function setAPILibrariesToLoad(libraries) {
  */
 export function loadMapsAPI() {
     if (!googleAPIKey) {
-        throw "Google API Key hasn't been set. You need to set it using setAPIKey() before actually loading the API.";
+        throw new Error(
+            "Google API Key hasn't been set. You need to set it using setAPIKey() before actually loading the API."
+        );
     }
 
     if (!apiLoaderPromise) {

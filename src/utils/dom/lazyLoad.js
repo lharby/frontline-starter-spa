@@ -548,6 +548,8 @@ function getSourcesFromAttribute(
                                 ) || ""
                             );
                         }
+
+                        return "";
                     },
                     ""
                 ) || sourceElement.getAttribute(sourceAttribute); // If no slow speed attributes were found, use the default attribute.
@@ -1100,7 +1102,9 @@ export function lazyLoad(elements, options = {}) {
     }
 
     if (!elementsToLoad) {
-        throw "lazyLoad's elements argument was not given as a string or a nodeList.";
+        throw new Error(
+            "lazyLoad's elements argument was not given as a string or a nodeList."
+        );
     }
 
     if (elementsToLoad.length) {

@@ -88,7 +88,9 @@ export function scrollTo(
 ) {
     // Make sure Promise is supported
     if (typeof Promise !== "function") {
-        throw "scrollTo needs support for Promise - Please read the notes in js/utils/scrollTo.js";
+        throw new Error(
+            "scrollTo needs support for Promise - Please read the notes in js/utils/scrollTo.js"
+        );
     }
 
     // Set duration to default if it isn't defined as a number
@@ -103,7 +105,7 @@ export function scrollTo(
 
     // Throw error if target element wasn't found
     if (!useTargetElement) {
-        throw "getElementPosition did not find an element.";
+        throw new Error("getElementPosition did not find an element.");
     }
 
     const elementIsWindow = useTargetElement === window;

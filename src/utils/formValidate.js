@@ -566,7 +566,9 @@ export class FormValidate {
         // Get element id or name
         const id = element.id || element.name;
         if (!id) {
-            throw "[formValidate.js] Fields need an ID or a name for form validation to work.";
+            throw new Error(
+                "[formValidate.js] Fields need an ID or a name for form validation to work."
+            );
         }
 
         // Check if error message element already exists
