@@ -16,33 +16,18 @@ const {
 
 const { FrontlineWebpackConfig } = require("@akqa-frontline/webpack-config");
 
-const entry = {
-    "main.js": "./src/main.js",
-    "styles.css": "./src/styles/global.scss"
-};
-
-const sharedPlugins = [
-    new FrontlineImageConfigWebpackPlugin(),
-    new FrontlineFontConfigWebpackPlugin(),
-    new FrontlineAssetConfigWebpackPlugin()
-];
-
-const legacyWebpackConfig = FrontlineWebpackConfig("legacy", {
-    entry,
+const webpackConfig = {
+    entry: {
+        "main.js": "./src/main.js",
+        "styles.css": "./src/styles/global.scss"
+    },
     plugins: [
-        ...sharedPlugins,
-        new FrontlineScssConfigWebpackPlugin({ browserslistEnv: "legacy" }),
-        new FrontlineJsConfigWebpackPlugin({ browserslistEnv: "legacy" })
-    ]
-});
-
-const modernWebpackConfig = FrontlineWebpackConfig("modern", {
-    entry,
-    plugins: [
-        ...sharedPlugins,
+        new FrontlineImageConfigWebpackPlugin(),
+        new FrontlineFontConfigWebpackPlugin(),
+        new FrontlineAssetConfigWebpackPlugin(),
         new FrontlineScssConfigWebpackPlugin({ browserslistEnv: "modern" }),
         new FrontlineJsConfigWebpackPlugin({ browserslistEnv: "modern" })
     ]
-});
+};
 
-module.exports = [legacyWebpackConfig, modernWebpackConfig];
+module.exports = FrontlineWebpackConfig("modern", webpackConfig);
