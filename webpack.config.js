@@ -17,10 +17,9 @@ const {
 const { FrontlineWebpackConfig } = require("@akqa-frontline/webpack-config");
 
 const entry = {
-    "main.js": "./src/index.jsx",
-    "critical.css": "./src/scss/critical.scss",
-    "styles.css": "./src/scss/main.scss"
-}
+    "main.js": "./src/main.js",
+    "styles.css": "./src/styles/global.scss"
+};
 
 const sharedPlugins = [
     new FrontlineImageConfigWebpackPlugin(),
