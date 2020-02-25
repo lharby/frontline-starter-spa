@@ -23,3 +23,11 @@
 @import "utilities/helpers/visibility";
 
 @import "layout/grid";
+
+details details {
+    padding-left: 1rem;
+}
+
+details > p {
+    padding-left: 1rem;
+}

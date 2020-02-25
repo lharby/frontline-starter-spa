@@ -17,8 +17,8 @@ const {
 const { FrontlineWebpackConfig } = require("@akqa-frontline/webpack-config");
 
 const entry = {
-    "main.js": "./src/main.js",
-    "styles.css": "./src/styles/global.scss"
+    main: "./src/main.js",
+    styles: "./src/styles/global.scss"
 };
 
 const sharedPlugins = [

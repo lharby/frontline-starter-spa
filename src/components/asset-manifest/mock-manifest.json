@@ -1,0 +1,58 @@
+{
+  "modern": {
+    "files": {
+      "lazy-component.js": "/static/js/lazy-component.modern.0d69cf1c.chunk.js",
+      "lazy-component.js.map": "/static/js/lazy-component.modern.0d69cf1c.chunk.js.map",
+      "main.js": "/static/js/main.modern.c7f0341c.chunk.js",
+      "main.js.map": "/static/js/main.modern.c7f0341c.chunk.js.map",
+      "runtime-main.js": "/static/js/runtime-main.modern.df27d7ca.js",
+      "runtime-main.js.map": "/static/js/runtime-main.modern.df27d7ca.js.map",
+      "runtime-styles.js": "/static/js/runtime-styles.modern.b857147d.js",
+      "runtime-styles.js.map": "/static/js/runtime-styles.modern.b857147d.js.map",
+      "styles.css": "/static/css/styles.modern.80258434.chunk.css",
+      "vendors~main.js": "/static/js/vendors~main.modern.e9adc618.chunk.js",
+      "vendors~main.js.map": "/static/js/vendors~main.modern.e9adc618.chunk.js.map",
+      "index.html": "/index.html",
+      "static/css/styles.modern.80258434.chunk.css.map": "/static/css/styles.modern.80258434.chunk.css.map"
+    },
+    "entrypoints": {
+      "main": [
+        "static/js/runtime-main.modern.df27d7ca.js",
+        "static/js/vendors~main.modern.e9adc618.chunk.js",
+        "static/js/main.modern.c7f0341c.chunk.js"
+      ],
+      "styles": [
+        "static/js/runtime-styles.modern.b857147d.js",
+        "static/css/styles.modern.80258434.chunk.css"
+      ]
+    }
+  },
+  "legacy": {
+    "files": {
+      "lazy-component.js": "/static/js/lazy-component.legacy.fe370a94.chunk.js",
+      "lazy-component.js.map": "/static/js/lazy-component.legacy.fe370a94.chunk.js.map",
+      "main.js": "/static/js/main.legacy.9c349b5b.chunk.js",
+      "main.js.map": "/static/js/main.legacy.9c349b5b.chunk.js.map",
+      "runtime-main.js": "/static/js/runtime-main.legacy.7c8021a7.js",
+      "runtime-main.js.map": "/static/js/runtime-main.legacy.7c8021a7.js.map",
+      "runtime-styles.js": "/static/js/runtime-styles.legacy.b857147d.js",
+      "runtime-styles.js.map": "/static/js/runtime-styles.legacy.b857147d.js.map",
+      "styles.css": "/static/css/styles.legacy.80258434.chunk.css",
+      "vendors~main.js": "/static/js/vendors~main.legacy.5eaa684c.chunk.js",
+      "vendors~main.js.map": "/static/js/vendors~main.legacy.5eaa684c.chunk.js.map",
+      "index.html": "/index.html",
+      "static/css/styles.legacy.80258434.chunk.css.map": "/static/css/styles.legacy.80258434.chunk.css.map"
+    },
+    "entrypoints": {
+      "main": [
+        "static/js/runtime-main.legacy.7c8021a7.js",
+        "static/js/vendors~main.legacy.5eaa684c.chunk.js",
+        "static/js/main.legacy.9c349b5b.chunk.js"
+      ],
+      "styles": [
+        "static/js/runtime-styles.legacy.b857147d.js",
+        "static/css/styles.legacy.80258434.chunk.css"
+      ]
+    }
+  }
+}
