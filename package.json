@@ -61,9 +61,9 @@
     }
   },
   "lint-staged": {
-    "src/**/*.*(js|jsx|json)": [
+    "src/**/*.*(js|jsx)": [
       "prettier --write",
-      "eslint src/**/*.*(js|jsx|json) --fix"
+      "eslint src/**/*.*(js|jsx) --fix"
     ],
     "src/**/*.*(css|scss)": [
       "prettier --write",
