@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { hot } from "react-hot-loader/root";
 import { lazy } from "@loadable/component";
 import pMinDelay from "p-min-delay";
 
@@ -77,4 +76,4 @@ const App = () => (
     </Router>
 );
 
-export default hot(App);
+export default App;
