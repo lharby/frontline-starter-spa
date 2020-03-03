@@ -1,11 +1,16 @@
+// @akqa-frontline/scss-config-webpack-plugin supports JSON imports
+// if this compiles then Storybook is using _our_ SCSS webpack configuration
+@import "./Example.tokens.json";
+
 .example {
-    color: darkcyan;
+    padding: 1rem 2rem;
+    border: 1px solid;
 }
 
-.example__message {
-    color: #00b3ee;
+.example--primary {
+    background-color: map_get($colors, primary);
 }
 
-.example__message--highlight {
-    background-color: black;
+.example--secondary {
+    background-color: map_get($colors, secondary);
 }

@@ -9,7 +9,8 @@
     "analyze:modern": "webpack-bundle-analyzer dist/stats.modern.json -p 8889",
     "prettier": "prettier --write \"src/**/*.*(js|jsx|json|css|scss)\"",
     "eslint": "eslint --fix \"src/**/*.*(js|jsx)\"",
-    "stylelint": "stylelint --fix \"src/**/*.*(css|scss)\""
+    "stylelint": "stylelint --fix \"src/**/*.*(css|scss)\"",
+    "storybook": "start-storybook"
   },
   "devDependencies": {
     "@akqa-frontline/asset-config-webpack-plugin": "0.7.1",
@@ -20,6 +21,7 @@
     "@akqa-frontline/scss-config-webpack-plugin": "0.7.1",
     "@akqa-frontline/stylelint-config-frontline": "0.7.1",
     "@akqa-frontline/webpack-config": "0.7.1",
+    "@storybook/react": "5.3.14",
     "babel-eslint": "10.0.3",
     "cross-env": "6.0.3",
     "eslint": "6.8.0",
@@ -61,9 +63,9 @@
     }
   },
   "lint-staged": {
-    "src/**/*.*(js|jsx|json)": [
+    "src/**/*.*(js|jsx)": [
       "prettier --write",
-      "eslint src/**/*.*(js|jsx|json) --fix"
+      "eslint src/**/*.*(js|jsx) --fix"
     ],
     "src/**/*.*(css|scss)": [
       "prettier --write",

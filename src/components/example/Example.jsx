@@ -4,22 +4,25 @@ import cn from "classnames";
 
 import ExampleStyles from "./Example.module.scss";
 
-const Example = ({ message = "World!", highlightMessage }) => (
-    <p className={cn([ExampleStyles.example])}>
-        Hello&nbsp;
-        <span
-            className={cn([ExampleStyles.example__message], {
-                [ExampleStyles["example__message--highlight"]]: highlightMessage
-            })}
-        >
-            {message}
-        </span>
-    </p>
+const object = {};
+
+const Example = ({ color = "primary" }) => (
+    <div
+        className={cn({
+            [ExampleStyles["example"]]: true,
+            [ExampleStyles["example--primary"]]: color === "primary",
+            [ExampleStyles["example--secondary"]]: color === "secondary"
+        })}
+    >
+        This is the Example Component
+        {/* @akqa-frontline/js-config-webpack-plugin supports optional chaining */}
+        {/* if this compiles then Storybook is using _our_ JS webpack configuration */}
+        {object?.foo?.bar}
+    </div>
 );
 
 Example.propTypes = {
-    message: PropTypes.string,
-    highlightMessage: PropTypes.bool
+    color: PropTypes.oneOf(["primary", "secondary"])
 };
 
 export default Example;
