@@ -8,7 +8,7 @@
     "analyze:legacy": "webpack-bundle-analyzer dist/stats.legacy.json -p 8888",
     "analyze:modern": "webpack-bundle-analyzer dist/stats.modern.json -p 8889",
     "prettier": "prettier --write \"src/**/*.*(js|jsx|json|css|scss)\"",
-    "eslint": "eslint --fix \"src/**/*.*(js|jsx|json)\"",
+    "eslint": "eslint --fix \"src/**/*.*(js|jsx)\"",
     "stylelint": "stylelint --fix \"src/**/*.*(css|scss)\""
   },
   "devDependencies": {
