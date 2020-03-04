@@ -1,25 +1,38 @@
-import React from "react";
+// import { hot } from "react-hot-loader/root";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import cn from "classnames";
 
-import ExampleStyles from "./Example.module.scss";
+const Example = ({ message = "World!" }) => {
+    const [counter, setCounter] = useState(0);
 
-const Example = ({ message = "World!", highlightMessage }) => (
-    <p className={cn([ExampleStyles.example])}>
-        Hello&nbsp;
-        <span
-            className={cn([ExampleStyles.example__message], {
-                [ExampleStyles["example__message--highlight"]]: highlightMessage
-            })}
-        >
-            {message}
-        </span>
-    </p>
-);
+    const [propUpdates, setPropUpdates] = useState(0);
+
+    // useEffect(() => {
+    // const sideEffect = () => setPropUpdates(p => (p += 1));
+    //
+    // sideEffect();
+    // }, [message]);
+
+    return (
+        <div>
+            <div>
+                <p>Count: {counter}</p>
+                <button onClick={() => setCounter(c => (c += 1))}> + </button>
+            </div>
+            <div>
+                <p>
+                    <code>message</code> prop updated {propUpdates} times
+                </p>
+            </div>
+            <div>
+                <p>Hello {message}</p>
+            </div>
+        </div>
+    );
+};
 
 Example.propTypes = {
-    message: PropTypes.string,
-    highlightMessage: PropTypes.bool
+    message: PropTypes.string
 };
 
 export default Example;
