@@ -2,14 +2,14 @@
   "name": "frontline-starter",
   "private": true,
   "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --mode production",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --mode production",
+    "clean": "rimraf dist",
     "analyze:legacy": "webpack-bundle-analyzer dist/stats.legacy.json -p 8888",
     "analyze:modern": "webpack-bundle-analyzer dist/stats.modern.json -p 8889",
-    "prettier": "prettier --write \"src/**/*.*(js|jsx|json|css|scss)\"",
-    "eslint": "eslint --fix \"src/**/*.*(js|jsx)\"",
-    "stylelint": "stylelint --fix \"src/**/*.*(css|scss)\""
+    "prettier": "prettier --write \"src/**/*.*(js|jsx|ts|tsx|css|scss)\"",
+    "eslint": "eslint --fix --cache \"src/**/*.*(js|jsx|ts|tsx)\"",
+    "stylelint": "stylelint --fix --cache \"src/**/*.*(css|scss)\""
   },
   "devDependencies": {
     "@akqa-frontline/asset-config-webpack-plugin": "0.7.1",
@@ -59,15 +59,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "src/**/*.*(js|jsx)": [
-      "prettier --write",
-      "eslint src/**/*.*(js|jsx) --fix"
-    ],
-    "src/**/*.*(css|scss)": [
-      "prettier --write",
-      "stylelint src/**/*.*(css|scss) --fix"
-    ]
   }
 }
