@@ -1,16 +1,9 @@
 // when using HMR features, react-hot-loader must be imported before react itself because it augments some features of React
-// import { hot } from "react-hot-loader/root";
-import React, { useState, Suspense } from "react";
-import { lazy } from "@loadable/component";
-import ErrorBoundary from "./components/ErrorBoundary";
+import { hot } from "react-hot-loader/root";
+import React, { useState } from "react";
 
-// lazy load the example component, lazy loaded components needs their export wrapped in hot()
-const LazyExample = lazy(() => import("./components/example/Example"), {
-    cacheKey: k => {
-        console.warn("Kenned", k);
-        return "Example";
-    }
-});
+// the Example component default-exports itself also wrapped in the hot() augment function - you need to do this for any component you want to be HMR enabled
+import Example from "./components/example/Example";
 
 const App = () => {
     const [message, setMessage] = useState("HMR");
@@ -18,11 +11,7 @@ const App = () => {
     return (
         <div>
             <h1>React Application Works!</h1>
-            <ErrorBoundary>
-                <Suspense fallback="loading...">
-                    <LazyExample message={message} />
-                </Suspense>
-            </ErrorBoundary>
+            <Example message={message} />
             <label>
                 <input
                     type="text"
@@ -36,4 +25,4 @@ const App = () => {
 };
 
 // export the app wrapped in the hot method
-export default App;
+export default hot(App);
