@@ -1,12 +1,31 @@
-const fileLimit = 10;
+const chunkFiles = require("lint-staged/lib/chunkFiles");
+
+// The linters fail for very large lists of files
+const MAX_ARGUMENT_LENGTH = 8000;
+
+const sharedTasks = ["prettier --write"];
 
 module.exports = {
     "./src/**/*.*(js|jsx|ts|tsx)": [
-        "prettier --write",
-        filenames => (filenames.length > fileLimit ? "eslint ./src/**/*.*(js|jsx|ts|tsx)" : `eslint --cache ${filenames.join(" ")}`),
+        ...sharedTasks,
+        allFiles => {
+            const chunkedFiles = chunkFiles({
+                files: allFiles,
+                maxArgLength: MAX_ARGUMENT_LENGTH,
+                gitDir: "./",
+            });
+            return chunkedFiles.map(chunk => `eslint --cache -- ${chunk.join(" ")}`);
+        },
     ],
     "./src/**/*.*(css|scss)": [
-        "prettier --write",
-        filenames => (filenames.length > fileLimit ? "stylelint ./src/**/*.*(css|scss)" : `stylelint --cache ${filenames.join(" ")}`),
+        ...sharedTasks,
+        allFiles => {
+            const chunkedFiles = chunkFiles({
+                files: allFiles,
+                maxArgLength: MAX_ARGUMENT_LENGTH,
+                gitDir: "./",
+            });
+            return chunkedFiles.map(chunk => `stylelint --cache -- ${chunk.join(" ")}`);
+        },
     ],
 };
