@@ -48,6 +48,7 @@ const generateModuleNoModuleScriptBlocks = async () => {
     // generated from all JavaScript entries under
     // the modern browsers env in the manifest file
     const modulePreloadTags = [
+        // exampel of what _ends up in the modulePreloadTags array_
         // "<link rel="modulepreload" href="static/js/runtime-main.modern.df27d7ca.js" />"
     ];
 
@@ -55,6 +56,7 @@ const generateModuleNoModuleScriptBlocks = async () => {
     // each path in list of assets in the map in modern / legacy must be of the same length
     const entries = {
         modern: {
+            // exampel of what _ends up in the entries object_
             /*
             main: [
                 "static/js/runtime-main.modern.df27d7ca.js"
@@ -62,6 +64,7 @@ const generateModuleNoModuleScriptBlocks = async () => {
             */
         },
         legacy: {
+            // exampel of what _ends up in the entries object_
             /*
             main: [
                 "static/js/runtime-main.legacy.7c8021a7.js"
