@@ -1,0 +1,5 @@
+{
+  "extends": "node_modules/@akqa-frontline/js-config-webpack-plugin/src/config/tsconfig",
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": ["**/node_modules/**/*", "**/test/**/*"]
+}
