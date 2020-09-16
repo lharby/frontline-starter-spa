@@ -7,9 +7,9 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development",
     "analyze:legacy": "webpack-bundle-analyzer dist/stats.legacy.json -p 8888",
     "analyze:modern": "webpack-bundle-analyzer dist/stats.modern.json -p 8889",
-    "prettier": "prettier --write \"src/**/*.*(js|jsx|json|css|scss)\"",
-    "eslint": "eslint --fix \"src/**/*.*(js|jsx)\"",
-    "stylelint": "stylelint --fix \"src/**/*.*(css|scss)\""
+    "eslint": "eslint --cache --fix --max-warnings 0 \"src/**/*.{js,jsx}\"",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,json,css,scss}\"",
+    "stylelint": "stylelint --cache --fix --max-warnings 0 \"src/**/*.*(css|scss)\""
   },
   "devDependencies": {
     "@akqa-frontline/asset-config-webpack-plugin": "0.7.1",
@@ -61,13 +61,8 @@
     }
   },
   "lint-staged": {
-    "src/**/*.*(js|jsx)": [
-      "prettier --write",
-      "eslint src/**/*.*(js|jsx) --fix"
-    ],
-    "src/**/*.*(css|scss)": [
-      "prettier --write",
-      "stylelint src/**/*.*(css|scss) --fix"
-    ]
+    "*.{js,jsx}": "eslint --cache --fix --max-warnings 0",
+    "*.{css,scss}": "stylelint --fix --max-warnings 0",
+    "*.{js,jsx,css,scss,md,mdx,json}": "prettier --write"
   }
 }
